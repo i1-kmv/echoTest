@@ -1,8 +1,24 @@
-import React from "react";
-import {Input} from "../Components/Input";
+import React from "react"
+import {Input} from "../components/Input"
+import {useDispatch, useSelector} from "react-redux"
+import {AppRootStateType} from "../store/store"
+import {setAuthModeAC} from "../store/registration-reducer"
+import {Redirect} from "react-router-dom";
 
 
 export const Registration = () => {
+
+    const authMode = useSelector<AppRootStateType, boolean>(state => state.register.authMode)
+
+    const dispatch = useDispatch()
+
+    const authModeHandler = () => {
+        dispatch(setAuthModeAC(true))
+    }
+
+    if (authMode) {
+        return <Redirect to={'/'}/>
+    }
     return (
         <form className='registration-form form'>
             <div className='registration-form__inputs inputs'>
@@ -14,7 +30,7 @@ export const Registration = () => {
             </div>
             <button className='registration-form__button button'>Регистрация</button>
             <div className='registration-form__links links'>
-                <a className="links-item">Авторизация</a>
+                <a className="links-item" onClick={authModeHandler}>Авторизация</a>
             </div>
         </form>
     )

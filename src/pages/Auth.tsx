@@ -13,6 +13,8 @@ export const Auth = () => {
     const registerMode = useSelector<AppRootStateType, boolean>(state => state.auth.registerMode)
     const passwordRecoveryMode = useSelector<AppRootStateType, boolean>(state => state.auth.passwordRecoveryMode)
 
+    console.log(formApi.getUser())
+
     const dispatch = useDispatch()
 
     const registerModeHandler = () => {

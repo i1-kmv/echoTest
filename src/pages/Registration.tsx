@@ -1,20 +1,23 @@
-import React from "react"
+import React, {useCallback} from "react"
 import {Input} from "../components/Input"
 import {useDispatch, useSelector} from "react-redux"
 import {AppRootStateType} from "../store/store"
 import {setAuthModeAC} from "../store/registration-reducer"
 import {Redirect} from "react-router-dom";
+import {setRegisterModeAC} from "../store/auth-reducer";
 
 
 export const Registration = () => {
+
 
     const authMode = useSelector<AppRootStateType, boolean>(state => state.register.authMode)
 
     const dispatch = useDispatch()
 
-    const authModeHandler = () => {
+    const authModeHandler = useCallback(() => {
         dispatch(setAuthModeAC(true))
-    }
+        dispatch(setRegisterModeAC(false))
+    },[dispatch])
 
     if (authMode) {
         return <Redirect to={'/'}/>

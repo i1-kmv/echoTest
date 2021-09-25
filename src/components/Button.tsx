@@ -9,6 +9,6 @@ type ButtonPropsType = {
 
 export const Button = (props: ButtonPropsType) => {
     return (
-        <button className={`${props.className} button`}>{props.title}</button>
+        <button className={`${props.className} button`} type={"submit"}>{props.title}</button>
     )
 }

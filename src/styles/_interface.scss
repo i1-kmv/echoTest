@@ -4,7 +4,8 @@
   justify-content: center;
   align-items: center;
   height: 50%;
-  min-height: 50%;
+
+  min-height: 500px;
   width: 500px;
   border: 2px solid rgba(89, 162, 216, 0.6);
   border-radius: 15px;
@@ -24,6 +25,7 @@
   height: 35px;
   border: 2px solid rgba(89, 162, 216, 0.5);
   box-shadow: 0px 2px 5px 1px rgba(89, 162, 216, 0.2);
+  width: 100%;
 }
 
 .links {
@@ -55,9 +57,23 @@
   }
 }
 
+.formik {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  color: orange;
+}
+
+.formik-input {
+  width: 100%;
+}
+
+.error {
+  text-align: center;
+}
 @media screen and ( max-width: 600px  ) {
   .form {
-    width: 80%;
+    width: 96%;
   }
   .inputs {
     width: 85%;

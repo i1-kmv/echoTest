@@ -5,7 +5,7 @@ const initialState = {
 
 export const registerReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'login/SET-AUTH-NODE':
+        case 'register/SET-AUTH-NODE':
             return {...state, authMode: action.value}
         default:
             return state
@@ -13,7 +13,7 @@ export const registerReducer = (state: InitialStateType = initialState, action: 
 }
 
 
-export const setAuthModeAC = (value: boolean) => ({type: 'login/SET-AUTH-NODE', value} as const)
+export const setAuthModeAC = (value: boolean) => ({type: 'register/SET-AUTH-NODE', value} as const)
 
 
 type ActionsType = ReturnType<typeof setAuthModeAC>

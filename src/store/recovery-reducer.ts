@@ -23,6 +23,7 @@ export const confirmPhoneTC = (data: FormikErrorType) => (dispatch: Dispatch) =>
     formApi.confirm_phone_mock(data)
         .then(res => {
             dispatch(setPhoneConfirmAC(true))
+            alert('hello')
         }).catch(err => {
         dispatch(setAppErrorAC(err))
     })
@@ -31,7 +32,7 @@ export const confirmPhoneTC = (data: FormikErrorType) => (dispatch: Dispatch) =>
 export const confirmSmsTC = (data: FormikErrorType) => (dispatch: Dispatch) => {
     formApi.confirm_sms_mock(data)
         .then(res => {
-            dispatch(setPhoneConfirmAC(true))
+            alert('hello')
         }).catch(err => {
         dispatch(setAppErrorAC(err))
     })

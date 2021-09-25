@@ -77,7 +77,7 @@ export const Auth = () => {
                 {formik.errors.password ? <div className="formik">{formik.errors.password}</div> : null}
                 <Input
                     className='auth-form__inputs-item input'
-                    type="text"
+                    type="password"
                     placeholder="Введите ваш пароль"
                     formikProps={{...formik.getFieldProps('password')}}
                 />
@@ -100,4 +100,8 @@ export type FormikErrorType = {
     phone?: string
     password?: string
     code?: string
+    confirmPhone?:string,
+    sms?:string
+    name?:string
+    avatar?:string
 }

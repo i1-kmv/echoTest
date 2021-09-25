@@ -4,7 +4,7 @@ import {Button} from "../components/Button"
 import {useDispatch, useSelector} from "react-redux"
 import {AppRootStateType} from "../store/store"
 import {Redirect} from "react-router-dom";
-import {loginTC, setPasswordRecoveryModeAC, setRegisterModeAC} from "../store/auth-reducer"
+import {setPasswordRecoveryModeAC, setRegisterModeAC} from "../store/auth-reducer"
 import {setAuthModeAC} from "../store/registration-reducer"
 import {confirmPhoneTC, setPhoneConfirmAC} from "../store/recovery-reducer"
 import {useFormik} from "formik";
@@ -16,13 +16,13 @@ export const PasswordRecovery = () => {
 
     const formik = useFormik({
         initialValues: {
-            phone: '',
+            confirmPhone: '',
             sms: '',
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
-            if (!values.phone) {
-                errors.phone = 'Обязательное поле!';
+            if (!values.confirmPhone) {
+                errors.confirmPhone = 'Обязательное поле!';
             }
             if (!values.sms) {
                 errors.password = 'Обязательное поле!';
@@ -31,6 +31,7 @@ export const PasswordRecovery = () => {
         },
         onSubmit: (values) => {
             dispatch(confirmPhoneTC(values))
+            console.log(values)
         }
     })
 
@@ -38,7 +39,6 @@ export const PasswordRecovery = () => {
     const authMode = useSelector<AppRootStateType, boolean>(state => state.register.authMode)
     const phoneConfirm = useSelector<AppRootStateType, boolean>(state => state.recovery.phoneConfirm)
     const isInitialized = useSelector<AppRootStateType, boolean>(state => state.auth.isInitialized)
-
 
     const dispatch = useDispatch()
 
@@ -69,17 +69,18 @@ export const PasswordRecovery = () => {
                     {
                         !phoneConfirm ?
                             <div className="formik-input">
-                                {formik.errors.phone ? <div className="formik">{formik.errors.phone}</div> : null}
+                                {formik.errors.confirmPhone ? <div className="formik">{formik.errors.confirmPhone}</div> : null}
                                 <Input
                                     className='recovery-form__inputs-item'
                                     type="text"
                                     placeholder="Введите ваш номер телефона"
-                                    name="phone"
+                                    name="confirmPhone"
                                     formikProps={{...formik.getFieldProps('phone')}}
                                 />
                             </div>
                             :
                            <div>
+                               {formik.errors.sms ? <div className="formik">{formik.errors.sms}</div> : null}
                                <Input
                                    className='recovery-form__inputs-item'
                                    type="text"
@@ -90,7 +91,7 @@ export const PasswordRecovery = () => {
                            </div>
                     }
                 </div>
-                    <Button className='recovery-form__button button'  title={!phoneConfirm ? 'Запросить пароль' : 'Отправить код'}></Button>
+                    <Button className='recovery-form__button button'  title={!phoneConfirm ? 'Запросить пароль' : 'Отправить код'}/>
                 <div className='recovery-form__links links'>
                     <a className='links-item' onClick={passwordRecoveryModeHandler}>Вспомнить пароль?</a>
                     <a className='links-item' onClick={registerModeHandler}>Регистрация</a>

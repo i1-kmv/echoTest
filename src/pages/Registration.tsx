@@ -2,7 +2,7 @@ import React, {useCallback} from "react"
 import {Input} from "../components/Input"
 import {useDispatch, useSelector} from "react-redux"
 import {AppRootStateType} from "../store/store"
-import {setAuthModeAC} from "../store/registration-reducer"
+import {registerTC, setAuthModeAC} from "../store/registration-reducer"
 import {Redirect} from "react-router-dom"
 import {loginTC, setIsLoggedInAC, setRegisterModeAC} from "../store/auth-reducer"
 import {useFormik} from "formik";
@@ -29,12 +29,10 @@ export const Registration = () => {
             if (!values.password) {
                 errors.password = 'Обязательное поле!';
             }
-            if (!values.avatar) {
-                errors.avatar = 'Обязательное поле!';
-            }
             return errors;
         },
         onSubmit: (values) => {
+            dispatch(registerTC(values.phone, values.password,values.name, values.avatar))
             dispatch(setRegisterModeAC(false))
             dispatch(setIsLoggedInAC(true))
         }
@@ -83,14 +81,6 @@ export const Registration = () => {
                     placeholder='Введите пароль'
                     name="password"
                     formikProps={{...formik.getFieldProps('password')}}
-                />
-                {formik.errors.avatar ? <div className="formik">{formik.errors.avatar}</div> : null}
-                <Input
-                    className='registration-form__inputs-item'
-                    type="file"
-                    placeholder='Загрузить аватар'
-                    name="avatar"
-                    formikProps={{...formik.getFieldProps('avatar')}}
                 />
             </div>
             <button className='registration-form__button button'>Регистрация</button>

@@ -33,7 +33,6 @@ export const loginTC = (data: FormikErrorType) => (dispatch: Dispatch) => {
             dispatch(setIsLoggedInAC(true))
             localStorage.setItem('isLoggedIn', JSON.stringify(true))
         }).catch(err => {
-            console.log(err)
         dispatch(setAppErrorAC(err))
         dispatch(setAppIsInitializedAC(true))
     })

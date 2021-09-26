@@ -2,7 +2,7 @@ import axios from "axios";
 import {FormikErrorType} from "../pages/Auth";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3000/api'
+    baseURL: 'someBaseUrl/api'
 })
 
 export const formApi = {
@@ -17,27 +17,31 @@ export const formApi = {
     },
     confirm_phone_mock(data: FormikErrorType) {
         return new Promise((res, rej) => {
-            if (data.code === '+7 999 999-99-99') {
+            if (data.confirmPhone === '+7 999 999-99-99') {
                 res(true)
             } else {
-                rej('Неверный номер тедефона')
+                rej('Неверный номер телефона')
             }
         })
     },
     confirm_sms_mock(data: FormikErrorType) {
         return new Promise((res, rej) => {
-            if (data.code === '5555') {
+            if (data.sms === '5555') {
                 res(true)
             } else {
                 rej('Неверный код')
             }
         })
     },
+    register_mock(phone: string, password: string, first_name:string, avatar:string) {
+        return instance.post<ResponseUserType>(`user/registration`, {phone, password, first_name, avatar})
+    }
 }
 
 type ResponseUserType = {
     id: number,
     phone: string,
     first_name: string,
-    last_name: string,
+    last_name?: string,
+    avatar: string
 }

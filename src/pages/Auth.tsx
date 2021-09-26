@@ -1,4 +1,4 @@
-import React, {useCallback} from "react"
+import React from "react"
 import {Input} from "../components/Input"
 import {Button} from "../components/Button"
 import {AppRootStateType} from "../store/store"
@@ -81,7 +81,6 @@ export const Auth = () => {
                     placeholder="Введите ваш пароль"
                     formikProps={{...formik.getFieldProps('password')}}
                 />
-
             </div>
             <div className='auth-form__save'>
                 <input type="checkbox"/>
@@ -97,7 +96,7 @@ export const Auth = () => {
 }
 
 export type FormikErrorType = {
-    phone?: string
+    phone?: string | undefined
     password?: string
     code?: string
     confirmPhone?:string,

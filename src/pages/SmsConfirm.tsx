@@ -6,7 +6,7 @@ import {AppRootStateType} from "../store/store"
 import {Redirect} from "react-router-dom"
 import {setPasswordRecoveryModeAC, setRegisterModeAC} from "../store/auth-reducer"
 import {setAuthModeAC} from "../store/registration-reducer"
-import {confirmSmsTC, setSmsConfirmAC} from "../store/recovery-reducer"
+import {confirmSmsTC, setPhoneConfirmAC, setSmsConfirmAC} from "../store/recovery-reducer"
 import {useFormik} from "formik"
 import {FormikErrorType} from "./Auth"
 import {ErrorSnackbar} from "../utils/ErrorSnackbar"
@@ -35,23 +35,24 @@ export const SmsConfirm = () => {
     const authMode = useSelector<AppRootStateType, boolean>(state => state.register.authMode)
     const smsConfirm = useSelector<AppRootStateType, boolean>(state => state.recovery.smsConfirm)
     const isInitialized = useSelector<AppRootStateType, boolean>(state => state.auth.isInitialized)
-    console.log(smsConfirm)
+
 
     const dispatch = useDispatch()
 
 
     const registerModeHandler = () => {
-        dispatch(setRegisterModeAC(true))
         dispatch(setPasswordRecoveryModeAC(false))
         dispatch(setSmsConfirmAC(false))
-        dispatch(setAuthModeAC(true))
+        dispatch(setAuthModeAC(false))
+        dispatch(setRegisterModeAC(true))
     }
 
-    const passwordRecoveryModeHandler = () => {
-        dispatch(setAuthModeAC(true))
+    const authModeHandler = () => {
+        dispatch(setPhoneConfirmAC(false))
         dispatch(setRegisterModeAC(false))
         dispatch(setPasswordRecoveryModeAC(false))
         dispatch(setSmsConfirmAC(false))
+        dispatch(setAuthModeAC(true))
     }
 
     if (registerMode) {
@@ -85,7 +86,7 @@ export const SmsConfirm = () => {
                         <Button className='recovery-form__button button'
                                 title='Отправить код'/>
                         <div className='recovery-form__links links'>
-                            <a className='links-item' onClick={passwordRecoveryModeHandler}>Вспомнить пароль?</a>
+                            <a className='links-item' onClick={authModeHandler}>Вспомнить пароль?</a>
                             <a className='links-item' onClick={registerModeHandler}>Регистрация</a>
                         </div>
                     </form>

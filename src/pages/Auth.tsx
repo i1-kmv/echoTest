@@ -7,9 +7,11 @@ import { Redirect } from "react-router-dom"
 import {loginTC, setPasswordRecoveryModeAC, setRegisterModeAC} from "../store/auth-reducer"
 import {useFormik} from "formik";
 import { ErrorSnackbar } from "../utils/ErrorSnackbar"
-import {setAuthModeAC} from "../store/registration-reducer";
+import {setAuthModeAC} from "../store/registration-reducer"
+
 
 export const Auth = () => {
+
     const formik = useFormik({
         initialValues: {
             phone: '',
@@ -35,6 +37,7 @@ export const Auth = () => {
     const passwordRecoveryMode = useSelector<AppRootStateType, boolean>(state => state.auth.passwordRecoveryMode)
     const isInitialized = useSelector<AppRootStateType, boolean>(state => state.auth.isInitialized)
 
+
     const dispatch = useDispatch()
 
     const registerModeHandler = () => {
@@ -48,6 +51,8 @@ export const Auth = () => {
         dispatch(setRegisterModeAC(false))
         dispatch(setAuthModeAC(false))
     }
+
+
 
     if (isLoggedIn) {
         return <Redirect to={'/cabinet'}/>
@@ -94,6 +99,7 @@ export const Auth = () => {
         </form>
     )
 }
+
 
 export type FormikErrorType = {
     phone?: string | undefined

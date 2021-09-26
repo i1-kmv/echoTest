@@ -1,7 +1,6 @@
-import {FormikErrorType} from "../pages/Auth";
 import {Dispatch} from "redux";
 import {formApi} from "../api/form-api";
-import {setAppErrorAC, setAppIsInitializedAC, setIsLoggedInAC} from "./auth-reducer";
+import {setAppErrorAC} from "./auth-reducer";
 
 const initialState = {
     authMode: false,

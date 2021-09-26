@@ -1,10 +1,10 @@
-import React, {useCallback} from "react"
+import React from "react"
 import {Input} from "../components/Input"
 import {useDispatch, useSelector} from "react-redux"
 import {AppRootStateType} from "../store/store"
 import {registerTC, setAuthModeAC} from "../store/registration-reducer"
 import {Redirect} from "react-router-dom"
-import {loginTC, setIsLoggedInAC, setRegisterModeAC} from "../store/auth-reducer"
+import {setIsLoggedInAC, setRegisterModeAC} from "../store/auth-reducer"
 import {useFormik} from "formik";
 import {FormikErrorType} from "./Auth";
 

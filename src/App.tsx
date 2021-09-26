@@ -3,7 +3,7 @@ import {Auth} from "./pages/Auth"
 import './styles/style.scss'
 import {PasswordRecovery} from "./pages/PasswordRecovery"
 import {Registration} from "./pages/Registration"
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {HashRouter, Route, Switch} from 'react-router-dom'
 import {PersonArea} from "./pages/PersonArea"
 import {SmsConfirm} from "./pages/SmsConfirm"
 import {Password} from "./pages/Password"
@@ -14,7 +14,7 @@ function App() {
 
     return (
         <div className="App">
-            <BrowserRouter>
+            <HashRouter>
                 <Switch>
                     <Route exact path={'/'} render={() => <Auth/>}/>
                     <Route path={'/registration'} render={() => <Registration/>}/>
@@ -23,7 +23,7 @@ function App() {
                     <Route path={'/sms'} render={() => <SmsConfirm/>}/>
                     <Route path={'/password'} render={() => <Password/>}/>
                 </Switch>
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 }

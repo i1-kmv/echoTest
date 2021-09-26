@@ -1,12 +1,14 @@
-import {formApi} from "../api/form-api";
-import {setAppErrorAC, setAppIsInitializedAC} from "./auth-reducer";
-import {FormikErrorType} from "../pages/Auth";
-import {Dispatch} from "redux";
+import {formApi} from "../api/form-api"
+import {setAppErrorAC, setAppIsInitializedAC} from "./auth-reducer"
+import {FormikErrorType} from "../pages/Auth"
+import {Dispatch} from "redux"
+
 
 const initialState = {
     phoneConfirm: false,
     smsConfirm: false
 }
+
 
 export const recoveryReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
@@ -22,6 +24,7 @@ export const recoveryReducer = (state: InitialStateType = initialState, action: 
 
 export const setPhoneConfirmAC = (value: boolean) => ({type: 'confirm/SET-PHONE-CONFIRM', value} as const)
 export const setSmsConfirmAC = (value: boolean) => ({type: 'confirm/SET-SMS-CONFIRM', value} as const)
+
 
 export const confirmPhoneTC = (data: FormikErrorType) => (dispatch: Dispatch) => {
     console.log(data)

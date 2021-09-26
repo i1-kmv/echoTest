@@ -7,8 +7,10 @@ import {Redirect} from "react-router-dom"
 import React, {useEffect} from "react"
 
 
-
 export const PersonArea = () => {
+
+
+    const dispatch = useDispatch()
 
     useEffect( () => {
         dispatch(setAuthModeAC(false))
@@ -16,8 +18,6 @@ export const PersonArea = () => {
 
     const name = useSelector<AppRootStateType, string>(state => state.register.user.first_name)
     const authMode = useSelector<AppRootStateType, boolean>(state => state.register.authMode)
-
-    const dispatch = useDispatch()
 
     const logOutHandler = () => {
         dispatch(setIsLoggedInAC(false))
